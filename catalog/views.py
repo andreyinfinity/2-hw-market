@@ -4,8 +4,13 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request=request, template_name='catalog/index.html')
+    return render(request=request, template_name='catalog/home.html')
 
 
-def contacts():
-    pass
+def contacts(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        print(f'Имя: {name}, email: {email}. {message}')
+    return render(request=request, template_name='catalog/contacts.html')
